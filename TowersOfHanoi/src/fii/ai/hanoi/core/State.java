@@ -29,7 +29,7 @@ public class State {
         State.discsCount = discsCount;
     }
 
-    public static State getInitialState() {
+    public static State getDefaultInitialState() {
         State initialState = new State();
         for (int i = 0; i < discsCount; i++) {
             initialState.discsPositions.set(i, 0);
