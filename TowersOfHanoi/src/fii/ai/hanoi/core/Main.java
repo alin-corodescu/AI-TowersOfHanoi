@@ -1,20 +1,24 @@
 package fii.ai.hanoi.core;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 /**
  * Created by alin on 10/18/17.
  */
-public class Main {
-    public static void main(String[] args) {
-        List<Integer> test = new ArrayList<>();
-        List<Integer> test1 = new ArrayList<>();
+public class Main
+{
+    public static void main(String[] args)
+    {
+        State.setEnvConfiguration(3, 3);
+        State initialState = State.getDefaultInitialState();
 
-        test.add(1);
-        test.add(2);
-        test1.add(1);
+        System.out.println("Initial State: " + initialState);
 
-        System.out.println(test1.equals(test));
+        State nextState = initialState.move(0, 1);
+
+        System.out.println("NextState: " + nextState);
+
+        int x = 1;
+        System.out.printf("This is a %d formatted string \n", x);
     }
 }
