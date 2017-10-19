@@ -38,7 +38,7 @@ public class State
         finalState = new State();
         for (int i = 0; i < discsCount; i++)
         {
-            finalState.discsPositions.set(i, 2);
+            finalState.discsPositions.set(i, rodCount - 1);
         }
     }
 
@@ -139,5 +139,10 @@ public class State
                 if (canMove(which, where))
                     accessibleStates.add(this.move(which, where));
         return accessibleStates;
+    }
+
+    @Override
+    public int hashCode() {
+        return discsPositions.hashCode();
     }
 }
