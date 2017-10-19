@@ -40,7 +40,6 @@ public class BacktrackingBrain implements Brain {
     }
 
     private void findSolution(State startingState) {
-        stateStack.add(startingState);
         backtrack(startingState);
         solution = new ArrayList<>(stateStack);
 
@@ -49,7 +48,6 @@ public class BacktrackingBrain implements Brain {
     private void backtrack(State state) {
         visitedStates.add(state);
         stateStack.push(state);
-
         if (state.isFinal()) {
             hasFoundSolution = true;
             return;
@@ -61,8 +59,10 @@ public class BacktrackingBrain implements Brain {
             if (!visitedStates.contains(neighbour) && !hasFoundSolution)
                 backtrack(neighbour);
         }
-        if (!hasFoundSolution)
+
+        if (!hasFoundSolution) {
             stateStack.pop();
+        }
     }
 
     @Override
