@@ -42,6 +42,10 @@ public class State
         }
     }
 
+    public static int getRodCount(){
+        return rodCount;
+    }
+
     public static State getDefaultInitialState()
     {
         State initialState = new State();
