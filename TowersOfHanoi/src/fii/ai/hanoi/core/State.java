@@ -33,6 +33,15 @@ public class State
         State.discsCount = discsCount;
     }
 
+    public static void setFinalState()
+    {
+        finalState = new State();
+        for (int i = 0; i < discsCount; i++)
+        {
+            finalState.discsPositions.set(i, 2);
+        }
+    }
+
     public static State getDefaultInitialState()
     {
         State initialState = new State();
@@ -66,6 +75,7 @@ public class State
     /**
      * Todo consider making this private
      * To generate new states starting from this, one should use {@link #move(int, int)} or {@link #getAccessibleStates()}
+     *
      * @param which piece to move
      * @param where rod onto which to move the piece
      * @return a new state, the result of moving the piece which onto the rod where
@@ -85,6 +95,7 @@ public class State
     /**
      * Todo consider public vs private access to this method
      * Tests if moving the piece which onto the rod where is a valid move
+     *
      * @param which the piece to be moved
      * @param where to rod to be placed on
      */
@@ -115,15 +126,17 @@ public class State
 
     /**
      * To generate new states starting from this, one should use {@link #move(int, int)} or {@link #getAccessibleStates()}
+     *
      * @return List of accessible states from the current state
      */
-    public List<State> getAccessibleStates() {
+    public List<State> getAccessibleStates()
+    {
         List<State> accessibleStates = new ArrayList<>();
         // Compute the available states from the current one
         // Not the most elegant way of doing things, but it's a start
         for (int which = 0; which < discsCount; which++)
-            for (int where = 0;  where < rodCount; where++)
-                if (canMove(which,where))
+            for (int where = 0; where < rodCount; where++)
+                if (canMove(which, where))
                     accessibleStates.add(this.move(which, where));
         return accessibleStates;
     }

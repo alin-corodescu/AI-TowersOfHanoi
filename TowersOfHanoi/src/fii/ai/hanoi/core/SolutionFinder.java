@@ -6,24 +6,29 @@ import java.util.List;
 /**
  * Created by alin on 10/18/17.
  */
-public class SolutionFinder {
+public class SolutionFinder
+{
 
     private Brain brain;
     private List<State> solution = new ArrayList<>();
 
-    public SolutionFinder(Brain brain, int rodCount, int discCount) {
+    public SolutionFinder(Brain brain, int rodCount, int discCount)
+    {
         this.brain = brain;
         State.setEnvConfiguration(rodCount, discCount);
     }
 
-    public Results findSolution() {
+    public Results findSolution()
+    {
         Results results = new Results();
 
         long startTime = System.nanoTime();
         // Todo maybe later change from default
         State state = State.getDefaultInitialState();
+        State.setFinalState();
         solution.add(state);
-        while (!state.isFinal()) {
+        while (!state.isFinal())
+        {
             state = brain.computeNextState(state);
             solution.add(state);
         }
@@ -40,7 +45,8 @@ public class SolutionFinder {
         return results;
     }
 
-    public void reset() {
+    public void reset()
+    {
         brain.reset();
         solution.clear();
     }
