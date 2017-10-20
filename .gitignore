@@ -1,2 +1,4 @@
 .idea/*
 TowersOfHanoi/*.iml
+*.iml
+out/*
