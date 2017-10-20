@@ -1,6 +1,6 @@
 package fii.ai.hanoi.core;
 
-import com.sun.org.apache.regexp.internal.RE;
+import java.util.List;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,20 +17,23 @@ public class Runnner {
         new Runnner().run();
     }
 
-    private void run() {
-        Brain brain = new BacktrackingBrain();
-        int rodCount = 5;
-        int discCount = 5;
+
+    private void run()
+    {
+        Brain brain = new RandomBrain();
+        int rodCount = 3;
+        int discCount = 3;
         int iterations = 1;
         SolutionFinder solutionFinder = new SolutionFinder(brain, rodCount, discCount);
-        for (int i = 0; i < iterations; i++) {
+        for (int i = 0; i < iterations; i++)
+        {
             solutionFinder.reset();
             Results results = solutionFinder.findSolution();
             printSolutionDetailed(results.solution);
             resultsList.add(results);
         }
-
-
+        ResultsProcessorImpl resultsProcessor = new ResultsProcessorImpl();
+        resultsProcessor.processResults(resultsList);
     }
 
     private void printSolutionDetailed(List<State> solution) {

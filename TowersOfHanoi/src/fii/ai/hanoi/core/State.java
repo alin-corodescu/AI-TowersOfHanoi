@@ -22,6 +22,11 @@ public class State
         discsPositions = new ArrayList<>(Collections.nCopies(discsCount, 0));
     }
 
+    public State(int... args)
+    {
+        discsPositions = new ArrayList<>(Collections.nCopies(discsCount, 0));
+    }
+
     /**
      * Static setter method used to initialize the configuration of the environment. Used to set the number of rods and
      * discs to be considered as input
@@ -33,13 +38,18 @@ public class State
         State.discsCount = discsCount;
     }
 
-    public static void setFinalState()
+    public static void setDefaultFinalState()
     {
         finalState = new State();
         for (int i = 0; i < discsCount; i++)
         {
             finalState.discsPositions.set(i, rodCount - 1);
         }
+    }
+
+
+    public static int getRodCount(){
+        return rodCount;
     }
 
     public static State getDefaultInitialState()
