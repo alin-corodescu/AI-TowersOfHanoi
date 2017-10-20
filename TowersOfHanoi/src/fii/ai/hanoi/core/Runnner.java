@@ -1,9 +1,6 @@
 package fii.ai.hanoi.core;
 
-import java.util.List;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -23,13 +20,12 @@ public class Runnner {
         Brain brain = new RandomBrain();
         int rodCount = 3;
         int discCount = 3;
-        int iterations = 1;
+        int iterations = 2;
         SolutionFinder solutionFinder = new SolutionFinder(brain, rodCount, discCount);
         for (int i = 0; i < iterations; i++)
         {
             solutionFinder.reset();
             Results results = solutionFinder.findSolution();
-            printSolutionDetailed(results.solution);
             resultsList.add(results);
         }
         ResultsProcessorImpl resultsProcessor = new ResultsProcessorImpl();

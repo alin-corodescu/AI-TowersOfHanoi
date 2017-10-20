@@ -20,12 +20,15 @@ public class RandomBrain implements Brain
 
     private Random randomGenerator;
 
+    private long consideredStates;
+
     public RandomBrain()
     {
         visitedStates = new ArrayList<>();
         solution = new Stack<>();
         accessibleStates = new ArrayList<>();
         randomGenerator = new Random();
+        consideredStates = 0;
     }
 
     @Override
@@ -39,29 +42,42 @@ public class RandomBrain implements Brain
             State nextState = accessibleStates.get(nextStateIndex);
             if (!visitedStates.contains(nextState))
             {
+                consideredStates++;
                 visitedStates.add(currentState);
                 solution.add(currentState);
                 return nextState;
-            } else
-            {
+            } else {
                 accessibleStates.remove(nextState);
             }
         }
-        visitedStates.add(currentState);
-        return solution.pop();
+        if( solution.size() > 2) {
+            int stepsBack = randomGenerator.nextInt(solution.size()-1)+1;
+            consideredStates++;
+            visitedStates.add(currentState);
+            for (int i = 0; i < stepsBack - 1; i++){
+                visitedStates.remove(solution.pop());
+            }
+            return solution.pop();
+        }
+        else {
+            visitedStates.clear();
+            return solution.pop();
+        }
     }
 
     @Override
     public long getNumberOfConsideredStates()
     {
-        return visitedStates.size();
+        return consideredStates;
     }
 
     @Override
     public void reset()
     {
-        visitedStates.clear();
-        solution.clear();
         accessibleStates.clear();
+        visitedStates.clear();
+        consideredStates = 0;
+        solution.clear();
+        randomGenerator = new Random();
     }
 }
