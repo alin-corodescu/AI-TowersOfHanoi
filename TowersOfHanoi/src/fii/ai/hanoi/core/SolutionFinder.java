@@ -25,10 +25,12 @@ public class SolutionFinder
         long startTime = System.nanoTime();
         // Todo maybe later change from default
         State initialState = new State(2,2,2,2);
-        int[] st = [1,2,34]
-        State initialState = new State(2,2,2,2);
+
 
         State state = State.getDefaultInitialState();
+
+
+//        State.setFinalState(new State(0,0,0));
         State.setDefaultFinalState();
         solution.add(state);
         while (!state.isFinal())

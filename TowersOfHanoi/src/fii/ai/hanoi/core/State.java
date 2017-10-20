@@ -1,6 +1,7 @@
 package fii.ai.hanoi.core;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,11 +23,17 @@ public class State
         discsPositions = new ArrayList<>(Collections.nCopies(discsCount, 0));
     }
 
-    public State(int... args)
+    public State(Integer... args)
     {
-        discsPositions = new ArrayList<>(Collections.nCopies(discsCount, 0));
+        if (args.length != discsCount)
+            throw new RuntimeException("Invalid state configuration");
+        discsPositions = Arrays.asList(args);
     }
 
+
+    public static void setFinalState(State finalState) {
+           State.finalState = finalState;
+    }
     /**
      * Static setter method used to initialize the configuration of the environment. Used to set the number of rods and
      * discs to be considered as input
