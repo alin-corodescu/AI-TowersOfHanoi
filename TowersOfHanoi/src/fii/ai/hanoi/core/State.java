@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by alin on 10/18/17.
@@ -23,11 +24,11 @@ public class State
         discsPositions = new ArrayList<>(Collections.nCopies(discsCount, 0));
     }
 
-    public State(Integer... args)
+    public State(int[] discsPositions)
     {
-        if (args.length != discsCount)
+        if (discsPositions.length != discsCount)
             throw new RuntimeException("Invalid state configuration");
-        discsPositions = Arrays.asList(args);
+        this.discsPositions = Arrays.stream(discsPositions).boxed().collect(Collectors.toList());
     }
 
 

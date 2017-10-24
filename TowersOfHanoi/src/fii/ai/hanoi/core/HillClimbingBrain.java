@@ -53,7 +53,7 @@ public class HillClimbingBrain implements Brain
                 bestMinim = minim;
             }
             else if (bestMinim == minim)
-                if (randomGenerator.nextInt(10) > 1){
+                if (randomGenerator.nextInt(10) > 5){
                     state = accessibleState;
                 }
         }
@@ -64,7 +64,7 @@ public class HillClimbingBrain implements Brain
     {
         int hillClimbHeuristic = 0, numberOfRods = State.getRodCount()-1;
         for(int i=0;i<state.getDiscsPositions().size();i++)
-            hillClimbHeuristic += numberOfRods - state.getDiscsPositions().get(i);
+            hillClimbHeuristic += numberOfRods - state.getDiscsPositions().get(i)*(i+1);
         return hillClimbHeuristic;
     }
 
