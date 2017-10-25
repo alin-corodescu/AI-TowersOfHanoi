@@ -39,6 +39,9 @@ public class State
      * Static setter method used to initialize the configuration of the environment. Used to set the number of rods and
      * discs to be considered as input
      */
+    public static State getFinalState(){
+        return finalState;
+    }
     public static void setEnvConfiguration(int rodCount, int discsCount)
     {
 

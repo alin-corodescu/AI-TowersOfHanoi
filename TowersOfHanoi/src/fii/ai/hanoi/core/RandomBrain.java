@@ -22,6 +22,9 @@ public class RandomBrain implements Brain
 
     private long consideredStates;
 
+    private int numberOfSafeStates ;
+    private int indexOfLastSafeState;
+
     public RandomBrain()
     {
         visitedStates = new ArrayList<>();
@@ -29,6 +32,8 @@ public class RandomBrain implements Brain
         accessibleStates = new ArrayList<>();
         randomGenerator = new Random();
         consideredStates = 0;
+        indexOfLastSafeState = 0;
+        numberOfSafeStates = 1;
     }
 
     @Override
@@ -45,13 +50,19 @@ public class RandomBrain implements Brain
                 consideredStates++;
                 visitedStates.add(currentState);
                 solution.add(currentState);
+                checkIfSafeState(currentState);
                 return nextState;
             } else {
                 accessibleStates.remove(nextState);
             }
         }
         if( solution.size() > 2) {
-            int stepsBack = randomGenerator.nextInt(solution.size()-1)+1;
+            int stepsBack;
+            if (numberOfSafeStates > 0 && solution.size() > indexOfLastSafeState)
+                stepsBack = randomGenerator.nextInt( solution.size() - indexOfLastSafeState) + 1;
+
+            else
+                stepsBack = randomGenerator.nextInt(solution.size()-1)+1;
             consideredStates++;
             visitedStates.add(currentState);
             for (int i = 0; i < stepsBack - 1; i++){
@@ -61,14 +72,28 @@ public class RandomBrain implements Brain
         }
         else {
             visitedStates.clear();
+            indexOfLastSafeState = 0;
+            numberOfSafeStates = 1;
             return solution.pop();
+        }
+    }
+
+    public void checkIfSafeState(State currentState){
+        int copy = numberOfSafeStates;
+        for(int i=currentState.getDiscsPositions().size()-1;i>=0 && copy > 0;i--){
+            if( currentState.getDiscsPositions().get(i) == State.getFinalState().getDiscsPositions().get(i) )
+            {
+                indexOfLastSafeState = solution.size() - 1;
+                numberOfSafeStates++;
+                copy --;
+            }
         }
     }
 
     @Override
     public long getNumberOfConsideredStates()
     {
-        return consideredStates;
+        return consideredStates+1;
     }
 
     @Override
@@ -79,5 +104,7 @@ public class RandomBrain implements Brain
         consideredStates = 0;
         solution.clear();
         randomGenerator = new Random();
+        indexOfLastSafeState = 0;
+        numberOfSafeStates = 1;
     }
 }
