@@ -12,11 +12,12 @@ public class SolutionFinder
     private Brain brain;
     private List<State> solution = new ArrayList<>();
     private State initialState;
+    private int[] initialDiscPositions;
 
     public SolutionFinder(Brain brain, int rodCount, int discCount, int[] initialDiscPositions, int[] finalDiscPositions)
     {
         this.brain = brain;
-        this.initialState = new State(initialDiscPositions);
+        this.initialDiscPositions = initialDiscPositions;
         State.setEnvConfiguration(rodCount, discCount);
         State.setFinalState(new State(finalDiscPositions));
     }
@@ -26,6 +27,8 @@ public class SolutionFinder
         Results results = new Results();
 
         long startTime = System.nanoTime();
+
+        this.initialState = new State(initialDiscPositions);
 
         solution.add(this.initialState);
         while (!this.initialState.isFinal())
@@ -49,6 +52,6 @@ public class SolutionFinder
     public void reset()
     {
         brain.reset();
-        solution.clear();
+        solution = new ArrayList<>();
     }
 }
