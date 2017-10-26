@@ -44,6 +44,7 @@ public class SolutionFinder
         results.consideredStates = brain.getNumberOfConsideredStates();
         results.duration = duration;
         results.solution = solution;
+        results.setBestSolution(SolutionUtils.compactSolution(solution));
 
         // add duration and consideredStates to the result set, together with the states
         return results;

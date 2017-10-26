@@ -1,0 +1,23 @@
+Strategia random detectata!
+Durata medie de executie este : 0.0003064 secunde
+Numarul mediu de stari testate este: 30.51
+Numarul mediu de stari ale solutiei (compactate) este : 14.75
+Numarul mediu de stari ale solutiei (NEcompactate) este : 30.58
+
+Strategia hillclimb detectata!
+Durata medie de executie este : 0.0001373 secunde
+Numarul mediu de stari testate este: 8.41
+Numarul mediu de stari ale solutiei (compactate) este : 9.41
+Numarul mediu de stari ale solutiei (NEcompactate) este : 9.41
+
+Strategia backtracking detectata!
+Durata medie de executie este : 0.0012033 secunde
+Numarul mediu de stari testate este: 15.0
+Numarul mediu de stari ale solutiei (compactate) este : 15.0
+Numarul mediu de stari ale solutiei (NEcompactate) este : 15.0
+
+Strategia astar detectata!
+Durata medie de executie este : 0.0099769 secunde
+Numarul mediu de stari testate este: 27.0
+Numarul mediu de stari ale solutiei (compactate) este : 8.0
+Numarul mediu de stari ale solutiei (NEcompactate) este : 8.0
