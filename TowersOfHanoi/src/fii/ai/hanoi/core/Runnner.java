@@ -73,6 +73,9 @@ public class Runnner
                 case "backtracking":
                     brain = new BacktrackingBrain();
                     break;
+                case "astar":
+                    brain = new AStarBain();
+                    break;
                 default:
                     throw new RuntimeException("Strategy " + strategy + "is not recognized!");
             }
