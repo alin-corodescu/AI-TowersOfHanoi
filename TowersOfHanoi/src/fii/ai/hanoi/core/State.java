@@ -26,7 +26,7 @@ public class State
 
     public State(int[] discsPositions)
     {
-        if (discsPositions.length != discsCount)
+        if (!checkIfValidConfiguration(discsPositions))
             throw new RuntimeException("Invalid state configuration");
         this.discsPositions = Arrays.stream(discsPositions).boxed().collect(Collectors.toList());
     }
@@ -165,5 +165,13 @@ public class State
     @Override
     public int hashCode() {
         return discsPositions.hashCode();
+    }
+
+    private boolean checkIfValidConfiguration(int[] discsPositions){
+        if (rodCount < 3)
+            return false;
+        if (discsCount < 1)
+            return false;
+        return true;
     }
 }

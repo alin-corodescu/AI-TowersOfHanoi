@@ -55,11 +55,11 @@ public class Runnner
             iterations = scanner.nextInt();
             int rodCount = scanner.nextInt();
             int disc = scanner.nextInt();
-            int[] startingStatePositions = new int[rodCount];
-            int[] targetStatePositions = new int[rodCount];
-            for (int i = 0; i < rodCount; i++)
+            int[] startingStatePositions = new int[disc];
+            int[] targetStatePositions = new int[disc];
+            for (int i = 0; i < disc; i++)
                 startingStatePositions[i] = scanner.nextInt();
-            for (int i = 0; i < rodCount; i++)
+            for (int i = 0; i < disc; i++)
                 targetStatePositions[i] = scanner.nextInt();
             String strategy = scanner.next();
             switch (strategy.toLowerCase())
