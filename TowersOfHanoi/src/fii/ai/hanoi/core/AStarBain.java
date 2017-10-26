@@ -36,14 +36,11 @@ public class AStarBain implements Brain {
         }
 
         List<State> accessibleStates = currentState.getAccessibleStates();
-        return accessibleStates.stream().min(new Comparator<State>() {
-            @Override
-            public int compare(State o1, State o2) {
-                if (f.get(o1).compareTo(f.get(o2)) == 0) {
-                    return h.get(o1).compareTo(h.get(o2));
-                }
-                return f.get(o1).compareTo(f.get(o2));
+        return accessibleStates.stream().min((o1, o2) -> {
+            if (f.get(o1).compareTo(f.get(o2)) == 0) {
+                return h.get(o1).compareTo(h.get(o2));
             }
+            return f.get(o1).compareTo(f.get(o2));
         }).get();
     }
 
